@@ -1,0 +1,44 @@
+\documentclass{standalone}
+%
+% Adjust the size of the page
+%
+\usepackage[total={297mm,210mm}, margin = 1in]{geometry}
+\usepackage{tikz}
+\usepackage{calligra}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{calc}
+\usepackage{layout}
+
+\parindent=0pt
+
+\begin{document}
+
+%\layout*
+%\end{document}
+
+\centering
+\begin{tikzpicture}%
+  \node[anchor=south west, inner sep=0] (X) at (0,0){\includegraphics[width=290mm]{diploma.png}};
+  \begin{scope}[x={(X.south east)},y={(X.north west)}]
+    %
+    % for each \node, set the position (relative to the page whose size is 1x1), the font size and the text
+    %
+    \node[text width=10in] (Z) at (0.5,0.52) {
+      \calligra\centering\Huge NAME
+      \par
+    };
+    \node[text width=10in] (Z) at (0.5,0.36) {
+      \sffamily\centering\Large experiments with Arduino and Smartphones
+      \par
+    };
+    \node[text width=10in] (Z) at (0.27,0.23) {
+      \sffamily\centering\large \today
+      \par
+    };
+    \node[text width=10in] (Z) at (0.72,0.23) {
+      \sffamily\centering\large Giovanni Organtini
+      \par
+    };    
+  \end{scope}
+\end{tikzpicture}
+\end{document}

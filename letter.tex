@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage[a4paper]{geometry}
+\usepackage{tikz}
+\usepackage{calligra}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{calc}
+\usepackage{layout}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{soul}             %% for underlining signatures
+\usepackage{inslrmin}       %% for the signature
+
+\begin{document}
+\fancyhead{} % clear all header fields
+\fancyhead[RO,LE]{\textbf{The Physics Maker Group}}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[LE,RO]{\thepage}
+
+%% Address
+\begin{flushright}
+TO WHOM IT MAY CONCERN
+\end{flushright}
+\vskip 3 cm
+
+%% Body
+This letter is to certify that NAME, birth in YEAR-OF-BIRTH, has successfully completed the course on using Arduino and Smartphones for physics experiment held in Roma by Giovanni Organtini.
+\vskip\baselineskip
+Sincerely,
+
+%% Signature
+\begin{flushright}
+{\iminfamily\setul{0.1ex}{}\ul{~~Orso Mario Corbino~~}}
+\end{flushright}
+\end{document}
