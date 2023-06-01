@@ -5,6 +5,8 @@ This tool generates a number of PDF documents based on a template. Tags in the t
 
 The CSV file must contain a row with the comma separated list of arbitrary tag names, followed by N rows, each of which containing as many fields as tags. The tool reads the template, for each line in the CSV file substitute the tag name with the corresponding values, then compile the modified file using latex and generates a PDF file whose name is composed after the first tag value for each row.
 
+NB: tag names are arbitrary, but you should avoid including characters that are used in a regular expression as special characters (like ./*, etc.).
+
 Two examples are provided: a letter and a diploma.
 
 Usage:
