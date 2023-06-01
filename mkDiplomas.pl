@@ -41,6 +41,9 @@ foreach $row (@rows) {
 	    $hdr =~ s/.$//;
 	    print("the header = [$hdr]\n");
 	}
+	if (!(-d "output")) {
+	    mkdir "output";
+	}
     } else {
 	if ($i % 10 == 0) {
 	    print($i/10);
