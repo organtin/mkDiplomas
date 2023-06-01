@@ -24,6 +24,7 @@ print("read $n lines from $csvfile\n");
 
 sub normalize {
     $tag = $_[0];
+    $tag =~ s/\\/\\\\textbackslash{}/g;
     $tag =~ s/\//\\\//g;
     return $tag;
 }
@@ -50,7 +51,7 @@ foreach $row (@rows) {
 	if (!(-d "output")) {
 	    mkdir "output";
 	}
-    } else {
+    } elsif ($tags[0] !~ m/^ *#/) {
 	if ($i % 10 == 0) {
 	    print($i/10);
 	} else {
@@ -69,14 +70,14 @@ foreach $row (@rows) {
 	$cat = `cat step1.tex`;
 	foreach $tag (@tags) {
 	    $tag = normalize($tag);
-	    $cmd = "cat step1.tex | sed -e \"s/$header[$k]/$tag/\" > step2.tex\n";
+	    $cmd = "cat step1.tex | sed -e \'s/$header[$k]/$tag/\' > step2.tex\n";
 	    `$cmd`;
 	    $k += 1;
 	    move("step2.tex", "step1.tex");
 	}
 	# run the latex command
 	if ($verbose) {
-	    print("Compiling $filename\n");
+	    print(".Compiling $filename\n");
 	}
 	$cmd = "$latexCmd step1.tex";
 	`$cmd`;
