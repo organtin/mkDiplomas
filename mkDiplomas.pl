@@ -18,12 +18,11 @@ open IN, $csvfile;
 @rows = <IN>;
 close IN;
 
-if ($verbose) {
-    $n = @rows;
-    print("read $n lines from $csvfile\n");
-}
+$n = @rows;
+$n--;
+print("read $n lines from $csvfile\n");
 
-$i = 0;
+$i = -1;
 @header;
 foreach $row (@rows) {
     # read each row and normalise it (removes all the unneded blanks)
@@ -31,7 +30,7 @@ foreach $row (@rows) {
     $row =~ s/ *,/,/g;
     $row =~ s/, */,/g;
     @tags = split/,/,$row;
-    if ($i == 0) {
+    if ($i == -1) {
 	# use the first row of the CSV file as the header
 	@header = @tags;	
 	if ($verbose) {
@@ -43,6 +42,11 @@ foreach $row (@rows) {
 	    print("the header = [$hdr]\n");
 	}
     } else {
+	if ($i % 10 == 0) {
+	    print($i/10);
+	} else {
+	    print(".");
+	}
 	# prepare the tex file using the first tag
 	$filename = $tags[0] . ".pdf";
 	$filename =~ s/ /_/g;
@@ -77,3 +81,4 @@ foreach $row (@rows) {
     }
     $i++;
 }
+print("\n");
