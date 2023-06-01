@@ -22,6 +22,12 @@ $n = @rows;
 $n--;
 print("read $n lines from $csvfile\n");
 
+sub normalize {
+    $tag = $_[0];
+    $tag =~ s/\//\\\//g;
+    return $tag;
+}
+
 $i = -1;
 @header;
 foreach $row (@rows) {
@@ -62,6 +68,7 @@ foreach $row (@rows) {
 	copy($template, "step1.tex");
 	$cat = `cat step1.tex`;
 	foreach $tag (@tags) {
+	    $tag = normalize($tag);
 	    $cmd = "cat step1.tex | sed -e \"s/$header[$k]/$tag/\" > step2.tex\n";
 	    `$cmd`;
 	    $k += 1;
